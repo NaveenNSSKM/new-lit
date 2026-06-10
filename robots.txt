@@ -10,4 +10,4 @@ Disallow: /orders.html
 Disallow: /profile.html
 
 # Sitemap Coordinates
-Sitemap: https://aura-2026.luxury/sitemap.xml
+Sitemap: https://new-tech-sepia.vercel.app/sitemap.xml

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account | AURA</title>
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+  <!-- Header is injected by js/main.js -->
+
+  <main class="container section-padding" style="margin-top: 4.5rem; display: flex; align-items: center; justify-content: center; min-height: 80vh;">
+    
+    <div class="checkout-card" style="width: 100%; max-width: 440px; padding: 2.5rem;">
+      <h1 style="font-size: 1.5rem; font-weight: 300; text-transform: uppercase; letter-spacing: 0.15em; text-align: center; margin-bottom: 2rem;">Create Account</h1>
+      
+      <form id="standalone-signup-form">
+        <div class="form-group">
+          <label class="form-label" for="std-reg-name">Full Name</label>
+          <input type="text" id="std-reg-name" required class="form-input" placeholder="Jane Doe">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="std-reg-email">Email Address</label>
+          <input type="email" id="std-reg-email" required class="form-input" placeholder="jane@domain.com">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="std-reg-phone">Phone Number</label>
+          <input type="tel" id="std-reg-phone" class="form-input" placeholder="+1 555-0000">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="std-reg-password">Password</label>
+          <input type="password" id="std-reg-password" required class="form-input" placeholder="Min. 8 characters">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="std-reg-confirm">Confirm Password</label>
+          <input type="password" id="std-reg-confirm" required class="form-input" placeholder="Re-enter password">
+        </div>
+        
+        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:1.5rem;">Register Account</button>
+        
+        <p style="text-align:center; font-size:0.813rem; margin-top:1.5rem; color:var(--text-secondary);">
+          Already have an account? <a href="login.html" style="color:var(--text-primary); font-weight:500;">Login</a>
+        </p>
+      </form>
+    </div>
+
+  </main>
+
+  <!-- Supabase Script -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+  <!-- App scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Handle signup submit
+      document.getElementById('standalone-signup-form')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const name = document.getElementById('std-reg-name').value.trim();
+        const email = document.getElementById('std-reg-email').value.trim();
+        const phone = document.getElementById('std-reg-phone').value.trim();
+        const pass = document.getElementById('std-reg-password').value;
+        const confirm = document.getElementById('std-reg-confirm').value;
+
+        if (pass.length < 8) {
+          window.showToast("Password must be at least 8 characters.", "danger");
+          return;
+        }
+        if (pass !== confirm) {
+          window.showToast("Passwords do not match.", "danger");
+          return;
+        }
+
+        const { data, error } = await window.authAPI.signUp(email, pass, name, phone);
+        
+        if (error) {
+          window.showToast(error.message, "danger");
+        } else {
+          window.showToast("Account created successfully! Welcome to AURA.");
+          setTimeout(() => {
+            window.location.href = "profile.html";
+          }, 1000);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

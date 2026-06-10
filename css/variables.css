@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Fonts */
+  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-body: 'Montserrat', 'Helvetica Neue', Helvetica, sans-serif;
+
+  /* Common Tokens */
+  --transition-fast: 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  --border-radius-sm: 8px;
+  --border-radius-md: 16px;
+  --border-radius-lg: 24px;
+  --border-radius-full: 9999px;
+  --container-max-width: 1400px;
+
+  /* Aurora/Accents Colors */
+  --aurora-cyan: #00e5ff;
+  --aurora-purple: #a800ff;
+  --aurora-pink: #e000ff;
+  --aurora-blue: #0052ff;
+  --aurora-indigo: #00c6ff;
+
+  /* Theme Defaults (Light Mode - Fallback) */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F5F5F7;
+  --bg-tertiary: #EDEDF0;
+  --text-primary: #0A0A0A;
+  --text-secondary: #51515A;
+  --text-tertiary: #A1A1AA;
+  --border-color: rgba(10, 10, 10, 0.08);
+  --border-focus: #0052ff;
+  --accent-color: #0052ff;
+  --accent-hover: #003cc2;
+  --accent-light: rgba(0, 82, 255, 0.05);
+  --premium-gradient: linear-gradient(135deg, var(--aurora-blue) 0%, var(--aurora-cyan) 40%, var(--aurora-purple) 75%, var(--aurora-pink) 100%);
+  
+  /* Status Colors */
+  --status-success: #10B981;
+  --status-success-bg: rgba(16, 185, 129, 0.05);
+  --status-warning: #F59E0B;
+  --status-warning-bg: rgba(245, 158, 11, 0.05);
+  --status-danger: #EF4444;
+  --status-danger-bg: rgba(239, 68, 68, 0.05);
+
+  /* Shadows & Glassmorphism */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.06);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(10, 10, 10, 0.06);
+  --glass-blur: blur(20px);
+}
+
+/* Dark Mode Overrides (Default Cyber-Luxury State) */
+[data-theme="dark"], :root {
+  --bg-primary: #0A0A0A; /* Pure Cosmic Black */
+  --bg-secondary: #121214; /* Bento Grid Cards */
+  --bg-tertiary: #1A1A1E;
+  --text-primary: #FAFAFB;
+  --text-secondary: #A0A0AB;
+  --text-tertiary: #52525B;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-focus: var(--aurora-cyan);
+  --accent-color: var(--aurora-cyan);
+  --accent-hover: var(--aurora-blue);
+  --accent-light: rgba(0, 229, 255, 0.06);
+  --premium-gradient: linear-gradient(135deg, var(--aurora-blue) 0%, var(--aurora-cyan) 35%, var(--aurora-purple) 70%, var(--aurora-pink) 100%);
+
+  /* Status Colors Dark Mode */
+  --status-success-bg: rgba(16, 185, 129, 0.1);
+  --status-warning-bg: rgba(245, 158, 11, 0.1);
+  --status-danger-bg: rgba(239, 68, 68, 0.15);
+
+  /* Shadows & Glassmorphism Dark Mode */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.6);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.03);
+  --glass-bg: rgba(10, 10, 12, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-blur: blur(24px);
+}
+
+/* Light Theme Specific Override */
+[data-theme="light"] {
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F5F5F7;
+  --bg-tertiary: #EDEDF0;
+  --text-primary: #0A0A0A;
+  --text-secondary: #51515A;
+  --text-tertiary: #A1A1AA;
+  --border-color: rgba(10, 10, 10, 0.08);
+  --border-focus: #0052ff;
+  --accent-color: #0052ff;
+  --accent-hover: #003cc2;
+  --accent-light: rgba(0, 82, 255, 0.05);
+  --premium-gradient: linear-gradient(135deg, var(--aurora-blue) 0%, var(--aurora-cyan) 40%, var(--aurora-purple) 75%, var(--aurora-pink) 100%);
+
+  /* Status Colors Light Mode */
+  --status-success-bg: rgba(16, 185, 129, 0.05);
+  --status-warning-bg: rgba(245, 158, 11, 0.05);
+  --status-danger-bg: rgba(239, 68, 68, 0.05);
+
+  /* Shadows & Glassmorphism Light Mode */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.06);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(10, 10, 10, 0.06);
+  --glass-blur: blur(20px);
+}

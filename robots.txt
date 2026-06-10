@@ -1,0 +1,13 @@
+# AURA - Search Indexing Directives (2026)
+User-agent: *
+
+# Crawling Restrictions
+Allow: /
+Disallow: /checkout.html
+Disallow: /forgot-password.html
+Disallow: /order-success.html
+Disallow: /orders.html
+Disallow: /profile.html
+
+# Sitemap Coordinates
+Sitemap: https://aura-2026.luxury/sitemap.xml

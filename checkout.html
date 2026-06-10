@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | AURA</title>
+  <meta name="description" content="Secure checkout page. Enter your shipping address and pay via Razorpay to complete your AURA purchase.">
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+  <!-- Reusable Header injected by js/main.js -->
+
+  <main class="container section-padding" style="margin-top: 4.5rem;">
+    <!-- Title -->
+    <div style="margin-bottom: 3.5rem; text-align: center;">
+      <h1 style="font-size: 2rem; font-weight: 300; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Secure Checkout</h1>
+      <p style="font-size: 0.875rem;" id="checkout-guest-warning">Fast, encrypted checkout processing.</p>
+    </div>
+
+    <!-- Checkout columns -->
+    <div class="checkout-layout">
+      
+      <!-- Left: Shipping Form -->
+      <section aria-label="Shipping Address">
+        <form class="checkout-card" id="checkout-shipping-form">
+          <h2 class="checkout-card-title">1. Shipping Details</h2>
+          
+          <div class="form-group">
+            <label class="form-label" for="ship-name">Full Name</label>
+            <input type="text" id="ship-name" required class="form-input" placeholder="Jane Doe">
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
+            <div class="form-group">
+              <label class="form-label" for="ship-email">Email Address</label>
+              <input type="email" id="ship-email" required class="form-input" placeholder="jane@domain.com">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="ship-phone">Phone Number</label>
+              <input type="tel" id="ship-phone" required class="form-input" placeholder="+1 555-0000">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="ship-address">Street Address</label>
+            <textarea id="ship-address" rows="3" required class="form-input" placeholder="123 Minimalist St, Apt 4B" style="resize:none;"></textarea>
+          </div>
+
+          <div style="display:grid; grid-template-columns:2fr 1fr; gap:1.5rem;">
+            <div class="form-group">
+              <label class="form-label" for="ship-city">City</label>
+              <input type="text" id="ship-city" required class="form-input" placeholder="New York">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="ship-zip">Zip Code</label>
+              <input type="text" id="ship-zip" required class="form-input" placeholder="10001">
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%; margin-top:2rem;">Place Order</button>
+        </form>
+      </section>
+
+      <!-- Right: Summary receipt -->
+      <aside aria-label="Order Summary">
+        <div class="checkout-card">
+          <h2 class="checkout-card-title">2. Order Summary</h2>
+          
+          <div id="checkout-summary-container">
+            <!-- Loaded dynamically from Session -->
+            <div class="skeleton" style="height: 5rem; margin-bottom: 1rem;"></div>
+          </div>
+
+          <div class="checkout-receipt">
+            <div class="receipt-row">
+              <span>Subtotal</span>
+              <span id="summary-subtotal">$0.00</span>
+            </div>
+            <div class="receipt-row">
+              <span>Shipping</span>
+              <span style="color: var(--status-success);">FREE</span>
+            </div>
+            <div class="receipt-row">
+              <span>Sales Tax (8%)</span>
+              <span id="summary-tax">$0.00</span>
+            </div>
+            <div class="receipt-row total">
+              <span>Total Amount</span>
+              <span id="summary-total">$0.00</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- Supabase Script -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+  <!-- App scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

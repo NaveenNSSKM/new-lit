@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | AURA</title>
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+  <!-- Header is injected by js/main.js -->
+
+  <main style="margin-top: 4.5rem;">
+    <!-- Large Header Image Banner -->
+    <div style="position:relative; height: 50vh; min-height: 360px; overflow:hidden; display:flex; align-items:center; background-color:var(--bg-secondary);">
+      <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=1600&auto=format&fit=crop" alt="AURA Design Studio" style="position:absolute; width:100%; height:100%; object-fit:cover; opacity:0.35;">
+      <div class="container" style="position:relative; z-index:2; text-align:center;">
+        <span style="font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.15em; color:var(--accent-color); display:block; margin-bottom:1rem;">THE ORIGIN STORY</span>
+        <h1 style="font-size: 3rem; font-weight:300; text-transform:uppercase; letter-spacing:0.05em; line-height:1.2;">Sculptural Simplicity</h1>
+      </div>
+    </div>
+
+    <!-- Editorial Core Content -->
+    <div class="container section-padding">
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:4rem; align-items:center; margin-bottom: 5rem;">
+        <div>
+          <h2 style="font-size: 1.75rem; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:1.5rem; font-weight:400;">Bespoke Heavyweight Fits</h2>
+          <p style="font-size:0.938rem; line-height:1.8; color:var(--text-secondary); margin-bottom:1rem;">AURA was established in 2024 to disrupt fast-fashion trends. By focusing exclusively on fundamental silhouettes—the T-shirt and the Hoodie—we seek perfection through micro-iterations in weight, ribbing, and dye processes.</p>
+          <p style="font-size:0.938rem; line-height:1.8; color:var(--text-secondary);">Our pattern blocks are built with a signature boxy structural drop-shoulder. Every seam is double-locked to ensure durability and resistance to deformation, allowing a loose fit that looks sharp and deliberate.</p>
+        </div>
+        <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=800&auto=format&fit=crop" alt="Fabric Detail" style="border-radius: var(--border-radius-sm); border:1px solid var(--border-color);">
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:4rem; align-items:center;">
+        <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?q=80&w=800&auto=format&fit=crop" alt="Dyeing Studio" style="border-radius: var(--border-radius-sm); border:1px solid var(--border-color);">
+        <div>
+          <h2 style="font-size: 1.75rem; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:1.5rem; font-weight:400;">Organic Sourcing</h2>
+          <p style="font-size:0.938rem; line-height:1.8; color:var(--text-secondary); margin-bottom:1rem;">We collaborate exclusively with certified organic cotton farms that prioritize soil preservation and water loop recycling. Our heavy loopback French terrys and carded Pima fibers are spun chemical-free.</p>
+          <p style="font-size:0.938rem; line-height:1.8; color:var(--text-secondary);">We dye in small batches using non-toxic natural oxides and low-impact pigments, giving each shade a organic, rich depth that develops unique wash characteristics over time.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Supabase Script -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+  <!-- App scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | AURA</title>
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+  <!-- Header is injected by js/main.js -->
+
+  <main class="container section-padding" style="margin-top: 4.5rem;">
+    <!-- Header -->
+    <div style="margin-bottom: 4rem; text-align: center;">
+      <span style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-color); display: block; margin-bottom: 1rem;">GET IN TOUCH</span>
+      <h1 style="font-size: 2.5rem; font-weight: 300; text-transform: uppercase; letter-spacing: 0.05em;">Contact Aura Support</h1>
+    </div>
+
+    <div class="checkout-layout">
+      <!-- Left: Contact Details -->
+      <section aria-label="Support Details" class="checkout-card" style="display:flex; flex-direction:column; gap:2.5rem; height:fit-content; background-color:var(--bg-secondary);">
+        <div>
+          <h3 style="font-size:0.875rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.75rem; color:var(--text-primary);">Design Studio</h3>
+          <p style="font-size:0.938rem; color:var(--text-secondary); line-height:1.6;">AURA Inc.<br>480 Minimalist Blvd, Suite 2A<br>SoHo, New York, NY 10012</p>
+        </div>
+        
+        <div>
+          <h3 style="font-size:0.875rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.75rem; color:var(--text-primary);">Customer Care</h3>
+          <p style="font-size:0.938rem; color:var(--text-secondary); line-height:1.6;">Mon - Fri: 9am - 6pm EST<br>Email: <a href="mailto:support@luxurybrand.com" style="color:var(--accent-color); font-weight:500;">support@luxurybrand.com</a><br>Phone: +1 555-0199</p>
+        </div>
+
+        <div>
+          <h3 style="font-size:0.875rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.75rem; color:var(--text-primary);">Press & Wholesale</h3>
+          <p style="font-size:0.938rem; color:var(--text-secondary); line-height:1.6;">For commercial inquiries, please reach out directly via:<br><a href="mailto:partners@luxurybrand.com" style="color:var(--text-primary); font-weight:600; text-decoration:underline;">partners@luxurybrand.com</a></p>
+        </div>
+      </section>
+
+      <!-- Right: Contact Form -->
+      <section aria-label="Support Form">
+        <form class="checkout-card" id="contact-form">
+          <h2 class="checkout-card-title">Send a Message</h2>
+          
+          <div class="form-group">
+            <label class="form-label" for="contact-name">Full Name</label>
+            <input type="text" id="contact-name" required class="form-input" placeholder="Jane Doe">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="contact-email">Email Address</label>
+            <input type="email" id="contact-email" required class="form-input" placeholder="jane@domain.com">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="contact-subject">Subject</label>
+            <select id="contact-subject" class="form-select">
+              <option value="order">Order Tracking & Returns</option>
+              <option value="custom">Custom T-Shirt Print Inquiries</option>
+              <option value="wholesale">Wholesale & Partnership</option>
+              <option value="general">General Brand Inquiries</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="contact-message">Message</label>
+            <textarea id="contact-message" rows="5" required class="form-input" placeholder="How can we assist you with our garments?" style="resize:none;"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%; margin-top:1.5rem;">Send Message</button>
+        </form>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- Supabase Script -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+  <!-- App scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById('contact-form')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('contact-name').value.trim();
+        window.showToast(`Thank you, ${name}. Your message has been received by Aura support.`);
+        e.target.reset();
+      });
+    });
+  </script>
+</body>
+</html>

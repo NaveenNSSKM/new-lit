@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | AURA</title>
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+  <!-- Header is injected by js/main.js -->
+
+  <main class="container section-padding" style="margin-top: 4.5rem; display: flex; align-items: center; justify-content: center; min-height: 75vh;">
+    
+    <div class="checkout-card" style="width: 100%; max-width: 400px; padding: 2.5rem;">
+      <h1 style="font-size: 1.5rem; font-weight: 300; text-transform: uppercase; letter-spacing: 0.15em; text-align: center; margin-bottom: 2rem;">Sign In</h1>
+      
+      <form id="standalone-login-form">
+        <div class="form-group">
+          <label class="form-label" for="std-email">Email Address</label>
+          <input type="email" id="std-email" required class="form-input" placeholder="name@domain.com">
+        </div>
+        
+        <div class="form-group">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+            <label class="form-label" for="std-password" style="margin-bottom:0;">Password</label>
+            <a href="forgot-password.html" class="form-label" style="text-transform:none; margin-bottom:0; color:var(--accent-color);">Forgot?</a>
+          </div>
+          <input type="password" id="std-password" required class="form-input" placeholder="••••••••">
+        </div>
+        
+        <div class="form-group" style="display:flex; align-items:center; gap:0.5rem;">
+          <input type="checkbox" id="std-remember" style="cursor:pointer">
+          <label for="std-remember" style="font-size:0.813rem; color:var(--text-secondary); cursor:pointer;">Remember Me</label>
+        </div>
+        
+        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:1.5rem;">Sign In</button>
+        
+        <p style="text-align:center; font-size:0.813rem; margin-top:1.5rem; color:var(--text-secondary);">
+          Don't have an account? <a href="signup.html" style="color:var(--text-primary); font-weight:500;">Create One</a>
+        </p>
+      </form>
+    </div>
+
+  </main>
+
+  <!-- Supabase Script -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+  <!-- App scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Handle login submit
+      document.getElementById('standalone-login-form')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('std-email').value.trim();
+        const pass = document.getElementById('std-password').value;
+
+        const { data, error } = await window.authAPI.signIn(email, pass);
+        if (error) {
+          window.showToast(error.message, "danger");
+        } else {
+          window.showToast("Welcome back, " + data.user.full_name);
+          setTimeout(() => {
+            window.location.href = "profile.html";
+          }, 1000);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

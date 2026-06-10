@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Collection | AURA</title>
+  <meta name="description" content="Browse the full collection of premium AURA t-shirts and hoodies. Filter by size, color, price and category to find your perfect fit.">
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+  <!-- Layout Header is injected by js/main.js -->
+
+  <main class="container section-padding" style="margin-top: 4.5rem;">
+    <!-- Shop Page Title Banner -->
+    <div style="margin-bottom: 3rem; text-align: center;">
+      <h1 style="font-size: 2rem; font-weight: 300; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Shop All Essentials</h1>
+      <p style="font-size: 0.875rem;">Premium garments with a strict minimal aesthetic. Fast worldwide courier dispatch.</p>
+    </div>
+
+    <!-- Collections Horizontal Navigation Bar -->
+    <div style="margin-bottom: 3rem; border-bottom: 1px solid var(--border-color); padding-bottom: 2rem; text-align: center;">
+      <h3 style="font-size: 0.813rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.25rem; color: var(--text-secondary);">Collections</h3>
+      <div id="filter-categories-list" style="display:flex; justify-content:center; flex-wrap:wrap; gap:1rem; align-items:center;">
+        <!-- Loaded dynamically -->
+        <div class="skeleton" style="height: 2rem; width: 6rem; border-radius:var(--border-radius-sm);"></div>
+        <div class="skeleton" style="height: 2rem; width: 6rem; border-radius:var(--border-radius-sm); margin-left:0.5rem;"></div>
+        <div class="skeleton" style="height: 2rem; width: 6rem; border-radius:var(--border-radius-sm); margin-left:0.5rem;"></div>
+      </div>
+    </div>
+
+    <!-- Shop Layout: Product Grid -->
+    <div class="shop-layout">
+
+      <!-- Shop Main content area -->
+      <section style="flex-grow:1;" aria-label="Product Catalog">
+        
+        <!-- Controls Toolbar -->
+        <div class="shop-controls">
+          <div class="shop-results-count" id="shop-results-count">
+            Showing 0 products
+          </div>
+          
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <label for="shop-sort-select" class="sr-only">Sort By</label>
+            <select class="form-select" id="shop-sort-select" style="padding: 0.5rem 2rem 0.5rem 1rem; font-size: 0.813rem; width: 11rem;">
+              <option value="newest">Sort By: Newest</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Catalog Product Grid -->
+        <div class="products-grid" id="shop-products-grid">
+          <!-- Skeletons -->
+          <div class="skeleton-card">
+            <div class="skeleton-image skeleton"></div>
+            <div class="skeleton-info"><div class="skeleton-category skeleton"></div><div class="skeleton-title skeleton"></div><div class="skeleton-price skeleton"></div></div>
+          </div>
+          <div class="skeleton-card">
+            <div class="skeleton-image skeleton"></div>
+            <div class="skeleton-info"><div class="skeleton-category skeleton"></div><div class="skeleton-title skeleton"></div><div class="skeleton-price skeleton"></div></div>
+          </div>
+          <div class="skeleton-card">
+            <div class="skeleton-image skeleton"></div>
+            <div class="skeleton-info"><div class="skeleton-category skeleton"></div><div class="skeleton-title skeleton"></div><div class="skeleton-price skeleton"></div></div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Supabase Script -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+  <!-- App scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/shop.js"></script>
+</body>
+</html>

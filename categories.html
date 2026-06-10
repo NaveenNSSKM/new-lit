@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collections | AURA</title>
+  <meta name="description" content="Explore AURA collections. Discover our curated lines of premium Heavyweight Boxy T-shirts, French terry Hoodies, Custom engravings, and New Releases.">
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  
+  <style>
+    .categories-full-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    
+    .category-full-card {
+      position: relative;
+      height: 400px;
+      overflow: hidden;
+      border-radius: var(--border-radius-sm);
+      border: 1px solid var(--border-color);
+    }
+    
+    .category-full-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+    
+    .category-full-card:hover img {
+      transform: scale(1.04);
+    }
+    
+    .category-full-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.8) 10%, rgba(15, 23, 42, 0.1) 60%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2.5rem;
+      color: #FFFFFF;
+    }
+    
+    .category-full-title {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      color: #FFFFFF;
+    }
+    
+    .category-full-desc {
+      font-size: 0.875rem;
+      opacity: 0.8;
+      max-width: 24rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+      color: #FFFFFF;
+    }
+    
+    @media (max-width: 768px) {
+      .categories-full-grid {
+        grid-template-columns: 1fr;
+      }
+      .category-full-card {
+        height: 320px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Reusable layout header injected by js/main.js -->
+
+  <main class="container section-padding" style="margin-top: 4.5rem;">
+    <div style="margin-bottom: 4rem; text-align: center;">
+      <span style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-color); display: block; margin-bottom: 1rem;">CURATED CATEGORIES</span>
+      <h1 style="font-size: 2.5rem; font-weight: 300; text-transform: uppercase; letter-spacing: 0.05em;">Our Collections</h1>
+    </div>
+
+    <!-- Category grid container -->
+    <div class="categories-full-grid" id="categories-full-grid">
+      <!-- Skeletons -->
+      <div class="skeleton-card skeleton" style="height: 400px;"></div>
+      <div class="skeleton-card skeleton" style="height: 400px;"></div>
+      <div class="skeleton-card skeleton" style="height: 400px;"></div>
+      <div class="skeleton-card skeleton" style="height: 400px;"></div>
+    </div>
+  </main>
+
+  <!-- Supabase Script -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+  <!-- Core Layout scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Page Logic -->
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const grid = document.getElementById('categories-full-grid');
+      if (!grid) return;
+
+      const { data: categories, error } = await window.dbAPI.getCategories();
+      
+      if (error || !categories) {
+        grid.innerHTML = `<p style="grid-column:1/-1; text-align:center;">Failed to load collections.</p>`;
+        return;
+      }
+
+      // Add custom description mapping to make it premium
+      const descs = {
+        'new-arrival': 'Explore our latest seasonal cuts, limited-edition colorways, and micro embroidered drops.',
+        't-shirt': 'Premium 240GSM heavyweight cotton crewnecks featuring structured fits and pre-shrunk detailing.',
+        'hoodies': 'Heavyweight French terry loops with double-lined drawless hoods, engineered for the perfect slouchy silhouette.',
+        'custom-t-shirt': 'Personalize our signature boxy t-shirts with bespoke precision typography. Handcrafted on order.'
+      };
+
+      grid.innerHTML = categories.map(cat => `
+        <a href="shop.html?category=${cat.slug}" class="category-full-card" aria-label="Shop ${cat.name}">
+          <img src="${cat.image_url}" alt="${cat.name}" loading="lazy">
+          <div class="category-full-overlay">
+            <h2 class="category-full-title">${cat.name}</h2>
+            <p class="category-full-desc">${descs[cat.slug] || 'Explore our premium essential fits, engineered with high density cotton fibers.'}</p>
+            <span class="btn btn-secondary" style="background-color: var(--glass-bg); color: var(--text-primary); border-color: var(--glass-border); width: fit-content; padding: 0.5rem 1.5rem;">Explore Drop</span>
+          </div>
+        </a>
+      `).join('');
+    });
+  </script>
+</body>
+</html>

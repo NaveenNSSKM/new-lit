@@ -35,14 +35,57 @@ const initProductDetails = async () => {
   selectedColor = currentProduct.colors[0] || 'White';
   selectedQuantity = 1;
 
-  // Update page title
+  // Update page title & dynamic meta description (PageSpeed/SEO)
   document.title = `${currentProduct.name} | AURA`;
+  
+  let metaDesc = document.querySelector('meta[name="description"]');
+  if (!metaDesc) {
+    metaDesc = document.createElement('meta');
+    metaDesc.name = 'description';
+    document.head.appendChild(metaDesc);
+  }
+  metaDesc.content = `${currentProduct.description.substring(0, 150)}... Sourced sustainably, buy the ${currentProduct.name} on AURA.`;
+
+  // Inject Product Schema JSON-LD Markup dynamically
+  injectProductSchema(currentProduct);
+
   document.getElementById('breadcrumb-active').textContent = currentProduct.name;
 
   renderDetails();
   loadRelatedProducts();
   loadReviews();
   setupReviewForm();
+};
+
+// Inject Product Schema Helper
+const injectProductSchema = (product) => {
+  const existing = document.getElementById('dynamic-product-schema');
+  if (existing) existing.remove();
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": product.name,
+    "image": product.image_url,
+    "description": product.description,
+    "brand": {
+      "@type": "Brand",
+      "name": "AURA"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": product.price,
+      "priceCurrency": "USD",
+      "availability": product.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+      "url": window.location.href
+    }
+  };
+
+  const script = document.createElement('script');
+  script.id = 'dynamic-product-schema';
+  script.type = 'application/ld+json';
+  script.textContent = JSON.stringify(schema);
+  document.head.appendChild(script);
 };
 
 // Render main product layout info
